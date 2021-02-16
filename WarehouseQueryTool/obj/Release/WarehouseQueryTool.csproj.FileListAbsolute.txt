@@ -1,0 +1,11 @@
+C:\Users\millsy\source\repos\CSharp\WarehouseQueryTool\WarehouseQueryTool\bin\Release\WarehouseQueryTool.exe.config
+C:\Users\millsy\source\repos\CSharp\WarehouseQueryTool\WarehouseQueryTool\bin\Release\WarehouseQueryTool.exe
+C:\Users\millsy\source\repos\CSharp\WarehouseQueryTool\WarehouseQueryTool\bin\Release\WarehouseQueryTool.pdb
+C:\Users\millsy\source\repos\CSharp\WarehouseQueryTool\WarehouseQueryTool\bin\Release\Oracle.DataAccess.dll
+C:\Users\millsy\source\repos\CSharp\WarehouseQueryTool\WarehouseQueryTool\obj\Release\WarehouseQueryTool.frmLogOn.resources
+C:\Users\millsy\source\repos\CSharp\WarehouseQueryTool\WarehouseQueryTool\obj\Release\WarehouseQueryTool.frmQueryBuilder.resources
+C:\Users\millsy\source\repos\CSharp\WarehouseQueryTool\WarehouseQueryTool\obj\Release\WarehouseQueryTool.Properties.Resources.resources
+C:\Users\millsy\source\repos\CSharp\WarehouseQueryTool\WarehouseQueryTool\obj\Release\WarehouseQueryTool.csproj.GenerateResource.cache
+C:\Users\millsy\source\repos\CSharp\WarehouseQueryTool\WarehouseQueryTool\obj\Release\WarehouseQueryTool.csproj.CopyComplete
+C:\Users\millsy\source\repos\CSharp\WarehouseQueryTool\WarehouseQueryTool\obj\Release\WarehouseQueryTool.exe
+C:\Users\millsy\source\repos\CSharp\WarehouseQueryTool\WarehouseQueryTool\obj\Release\WarehouseQueryTool.pdb
