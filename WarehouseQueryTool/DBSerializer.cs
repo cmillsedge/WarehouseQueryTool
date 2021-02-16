@@ -17,8 +17,6 @@ namespace WarehouseQueryTool
                 //Class to serialize connection information other than password to allow retention of last log on info
                 Stream stream = File.Open(fullFileName, FileMode.Create);
                 BinaryFormatter bformatter = new BinaryFormatter();
-
-                Console.WriteLine("Writing DB Information");
                 bformatter.Serialize(stream, database);
                 stream.Close();
             }

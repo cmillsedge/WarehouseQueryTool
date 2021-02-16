@@ -17,7 +17,6 @@ namespace WarehouseQueryTool
                 List<ProcessDefinition> pds = new List<ProcessDefinition>();
                 foreach (TreeNode outline in trvSelect.Nodes[0].Nodes)
                 {
-                    Console.WriteLine(outline.Text);
                     foreach (TreeNode process in outline.Nodes)
                     {
                         int nctx = 0;

@@ -31,7 +31,7 @@ namespace WarehouseQueryTool
                 List<ContextSQL> cSQLS = new List<ContextSQL>();
                 for (int i = 0; i < p; i++)
                 {
-                    ContextSQL cSQL = new ContextSQL(contexts[i]);
+                    ContextSQL cSQL = new ContextSQL(contexts[i], p);
                     cSQLS.Add(cSQL);
                 }
                 ContextsSQL = cSQLS;

@@ -56,8 +56,6 @@ namespace WarehouseQueryTool
                         if (dc.ColumnName == "OUTLINE_ID") { outlines[n].Id = Int32.Parse(dr[dc].ToString()); }
                         if (dc.ColumnName == "OUTLINE_NAME") { outlines[n].Name = dr[dc].ToString(); }
                         if (outlines[n].Id > 0 & outlines[n].Name != "") { outlines[n].GetProcessDefinitions(); }
-
-                        Console.WriteLine(dr[dc]);
                     }
                     n += 1;
                 }
@@ -154,6 +152,7 @@ namespace WarehouseQueryTool
                 foreach (ProcessDefinition pd in pds)
                 {
                     ProcessSQL ps = new ProcessSQL(pd);
+                    Console.WriteLine(ps.Query);
                     Queries.Add(ps.Query);
                 }
                 using (frmResults frmResults = new frmResults(_whconn, Queries))
@@ -186,6 +185,19 @@ namespace WarehouseQueryTool
             {
                 TreeNode node = trvPick.SelectedNode;
                 MoveNode(node);
+            }
+        }
+
+        private void trvSelect_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (trvSelect.SelectedNode != null)
+                {
+                    TreeNode node = trvSelect.SelectedNode;
+                    trvSelect.Nodes.Remove(node);
+                }
+                e.Handled = true;
             }
         }
     }

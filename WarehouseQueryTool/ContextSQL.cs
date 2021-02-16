@@ -13,15 +13,17 @@ namespace WarehouseQueryTool
         public string ViewSQL { get; set; }
         public string ProcessName { get; set; }
         public int Level { get; set; }
+        public int Levels { get; set; }
         //public ParameterSQL[] ParametersSQL { get; set; }
         public List<ParameterSQL> ParametersSQL { get; set; }
         public string[] Columns { get; set; }
 
-        public ContextSQL(ProcessContext context)
+        public ContextSQL(ProcessContext context, int ProcessLevels)
         {
             Name = context.Name;
             ProcessName = context.ProcDef_Name;
             Level = context.Level;
+            Levels = ProcessLevels;
             ConvertToParameterSQL(context.Parameters);
             GetColumns(context.Parameters);
             GetContextSQL();
@@ -59,7 +61,7 @@ namespace WarehouseQueryTool
             try
             {
                 int p = Params.Count();
-                if (Level == 0)
+                if (Level == 0 || Levels == 1)
                 {
                     p += 4;
                 }
@@ -68,9 +70,9 @@ namespace WarehouseQueryTool
                 string col = "";
                 for (int i = 0; i < p; i++)
                 {
-                    if (Level == 0)
+                    if (Level == 0 || Levels == 1)
                     {
-                        switch (i)
+                    switch (i)
                         {
                             case 0:
                                 col = "context_" + Level + "." + (char)34 + "Expt_Name" + (char)34;
@@ -92,7 +94,7 @@ namespace WarehouseQueryTool
                     }
                     else
                     {
-                        col = "context_" + Level + "." + (char)34 + Params[i].Name + (char)34;
+                       col = "context_" + Level + "." + (char)34 + Params[i].Name + (char)34;
                     }
                     
                     cols[i] = col;

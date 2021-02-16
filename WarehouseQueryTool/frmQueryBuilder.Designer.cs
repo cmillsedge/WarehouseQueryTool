@@ -74,6 +74,7 @@
             this.trvSelect.TabIndex = 2;
             this.trvSelect.DragDrop += new System.Windows.Forms.DragEventHandler(this.TreeviewDragDrop);
             this.trvSelect.DragEnter += new System.Windows.Forms.DragEventHandler(this.TreeviewDragEnter);
+            this.trvSelect.KeyDown += new System.Windows.Forms.KeyEventHandler(this.trvSelect_KeyDown);
             // 
             // lblPick
             // 

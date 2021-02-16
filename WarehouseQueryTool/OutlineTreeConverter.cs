@@ -154,10 +154,33 @@ namespace WarehouseQueryTool
             string datatype;
             try
             {
-                if (dt == "numeric")
-                { datatype = "n"; }
-                else
-                { datatype = "s"; }
+                switch (dt)
+                {
+                    case "numeric":
+                        datatype = "n";
+                        break;
+                    case "text":
+                        datatype = "s";
+                        break;
+                    case "dictionary":
+                        datatype = "d";
+                        break;
+                    case "file":
+                        datatype = "s";
+                        break;
+                    case "url":
+                        datatype = "s";
+                        break;
+                    case "datetime":
+                        datatype = "t";
+                        break;
+                    case "date":
+                        datatype = "t";
+                        break;
+                    default:
+                        datatype = "s";
+                        break;
+                }
             }
             catch (Exception)
             { throw; }
