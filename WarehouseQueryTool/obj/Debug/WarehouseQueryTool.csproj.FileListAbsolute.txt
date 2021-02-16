@@ -29,7 +29,6 @@ C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQuer
 C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\bin\Debug\WarehouseQueryTool.exe
 C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\bin\Debug\WarehouseQueryTool.pdb
 C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\bin\Debug\Oracle.DataAccess.dll
-C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.csprojAssemblyReference.cache
 C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.frmResults.resources
 C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.frmLogOn.resources
 C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.frmQueryBuilder.resources
@@ -39,3 +38,4 @@ C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQuer
 C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.csproj.CopyComplete
 C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.exe
 C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.pdb
+C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.csproj.ResolveComReference.cache
