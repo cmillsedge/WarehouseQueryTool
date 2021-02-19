@@ -16,11 +16,15 @@ namespace WarehouseQueryTool
     {
         private OrclCommand _whconn;
         private DataTable _mainTable;
+        private BindingList<TypedColumn> _columns;
+        private List<FilterControlSet> _filterControlSets;
         public frmResults(OrclCommand WHConn, List<String> Queries)
         {
             _whconn = WHConn;
+            _filterControlSets = new List<FilterControlSet>();
             InitializeComponent();
             PopulateGrid(Queries);
+            PopulateCols();
             dgvResults.AutoResizeColumns();
             dgvResults.AllowUserToAddRows = false;
         }
@@ -51,6 +55,27 @@ namespace WarehouseQueryTool
 
         }
 
+        public void PopulateCols()
+        {
+            try
+            {
+                _columns = new BindingList<TypedColumn>();
+                for (int i = 0; i < _mainTable.Columns.Count; i++)
+                {
+                    TypedColumn tc = new TypedColumn();
+                    tc.FieldName = _mainTable.Columns[i].ColumnName;
+                    tc.DataType = _mainTable.Columns[i].DataType.ToString();
+                    _columns.Add(tc);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+
+        }
+
         public DataTable RunQuery(string Query)
         {
 
@@ -72,7 +97,8 @@ namespace WarehouseQueryTool
 
             try
             {
-                foreach(DataColumn dc in dt.Columns)
+                DataColumn df = new DataColumn("Filter Operations", System.Type.GetType("System.String"));
+                foreach (DataColumn dc in dt.Columns)
                 {
                     if(!(dc.ColumnName == "Expt_Name" || dc.ColumnName == "Process_Ver_Name" || dc.ColumnName == "Method_Name" || dc.ColumnName == "Lot_Name"))
                     { 
@@ -80,7 +106,7 @@ namespace WarehouseQueryTool
                     }
                     if(!(_mainTable.Columns.Contains(dc.ColumnName)))
                     {
-                        dc.CopyTo(_mainTable);
+                        dc.CopyTo(_mainTable, false);
                     }
                 }
             }
@@ -106,7 +132,8 @@ namespace WarehouseQueryTool
                     }
                     _mainTable.Rows.Add(drnew);
                 }
-                
+
+
             }
             catch (Exception ex)
             {
@@ -116,36 +143,36 @@ namespace WarehouseQueryTool
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            string rowFilter = "";
-            if (txtExpt.Text != "")
-            {
-                rowFilter += string.Format("[{0}] LIKE '%{1}%'", "Expt_Name", txtExpt.Text);
-            }
-            if (txtProcess.Text != "")
-            {
-                if (rowFilter.Length == 0)
-                {
-                    rowFilter += string.Format("[{0}] LIKE '%{1}%'", "Process_Ver_Name", txtProcess.Text);
-                }
-                else
-                {
-                    rowFilter += string.Format("AND [{0}] LIKE '%{1}%'", "Process_Ver_Name", txtProcess.Text);
-                }
-            }
-            if (txtMethod.Text != "")
-            {
-                if (rowFilter.Length == 0)
-                {
-                    rowFilter += string.Format("[{0}] LIKE '%{1}%'", "Method_Name", txtMethod.Text);
-                }
-                else
-                {
-                    rowFilter += string.Format("AND [{0}] LIKE '%{1}%'", "Method_Name", txtMethod.Text);
-                }
-            }
+            //string rowFilter = "";
+            //if (txtExpt.Text != "")
+            //{
+            //    rowFilter += string.Format("[{0}] LIKE '%{1}%'", "Expt_Name", txtExpt.Text);
+            //}
+            //if (txtProcess.Text != "")
+            //{
+            //    if (rowFilter.Length == 0)
+            //    {
+            //        rowFilter += string.Format("[{0}] LIKE '%{1}%'", "Process_Ver_Name", txtProcess.Text);
+            //    }
+            //    else
+            //    {
+            //        rowFilter += string.Format("AND [{0}] LIKE '%{1}%'", "Process_Ver_Name", txtProcess.Text);
+            //    }
+            //}
+            //if (txtMethod.Text != "")
+            //{
+            //    if (rowFilter.Length == 0)
+            //    {
+            //        rowFilter += string.Format("[{0}] LIKE '%{1}%'", "Method_Name", txtMethod.Text);
+            //    }
+            //    else
+            //    {
+            //        rowFilter += string.Format("AND [{0}] LIKE '%{1}%'", "Method_Name", txtMethod.Text);
+            //    }
+            //}
 
-            //rowFilter += string.Format(" OR [{0}] = '{1}'", columnName, additionalFilterValue);
-            (dgvResults.DataSource as DataTable).DefaultView.RowFilter = rowFilter;
+            ////rowFilter += string.Format(" OR [{0}] = '{1}'", columnName, additionalFilterValue);
+            //(dgvResults.DataSource as DataTable).DefaultView.RowFilter = rowFilter;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -233,6 +260,15 @@ namespace WarehouseQueryTool
                 // Open the newly saved excel file
                 if (File.Exists(sfd.FileName))
                     System.Diagnostics.Process.Start(sfd.FileName);
+            }
+        }
+
+        private void btnDefinition_Click(object sender, EventArgs e)
+        {
+            using (frmFilter frmFilter = new frmFilter(_filterControlSets, _columns))
+            {
+                frmFilter.Location = this.Location;
+                frmFilter.ShowDialog();
             }
         }
     }

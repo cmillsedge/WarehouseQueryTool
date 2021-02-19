@@ -9,9 +9,13 @@ namespace WarehouseQueryTool
 {
     public static class DataColumnExtensions
     {
-        public static DataColumn CopyTo(this DataColumn column, DataTable table)
+        public static DataColumn CopyTo(this DataColumn column, DataTable table, bool forceString)
         {
-            DataColumn newColumn = new DataColumn(column.ColumnName, column.DataType, column.Expression, column.ColumnMapping);
+            DataColumn newColumn = null;
+            if (forceString)
+            { newColumn = new DataColumn(column.ColumnName, Type.GetType("System.String"), column.Expression, column.ColumnMapping); }
+            else
+            { newColumn = new DataColumn(column.ColumnName, column.DataType, column.Expression, column.ColumnMapping); }
             newColumn.AllowDBNull = column.AllowDBNull;
             newColumn.AutoIncrement = column.AutoIncrement;
             newColumn.AutoIncrementSeed = column.AutoIncrementSeed;
@@ -28,11 +32,11 @@ namespace WarehouseQueryTool
             return newColumn;
         }
 
-        public static DataColumn CopyColumnTo(this DataTable sourceTable, string columnName, DataTable destinationTable)
+        public static DataColumn CopyColumnTo(this DataTable sourceTable, string columnName, DataTable destinationTable, bool forceString)
         {
             if (sourceTable.Columns.Contains(columnName))
             {
-                return sourceTable.Columns[columnName].CopyTo(destinationTable);
+                return sourceTable.Columns[columnName].CopyTo(destinationTable, forceString);
             }
             else
             {

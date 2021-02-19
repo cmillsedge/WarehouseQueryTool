@@ -47,7 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilterFormBuilder.cs" />
+    <Compile Include="TypedColumn.cs" />
+    <Compile Include="FilterControlSet.cs" />
     <Compile Include="DataColumnExtensions.cs" />
+    <Compile Include="DataGridToFilter.cs" />
+    <Compile Include="frmFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFilter.Designer.cs">
+      <DependentUpon>frmFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmResults.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +90,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmFilter.resx">
+      <DependentUpon>frmFilter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmResults.resx">
       <DependentUpon>frmResults.cs</DependentUpon>
     </EmbeddedResource>
