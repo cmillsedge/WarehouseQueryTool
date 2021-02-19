@@ -64,7 +64,7 @@ namespace WarehouseQueryTool
                 FilterFormBuilder.AddFilterElements(gb, _numFilters, tc);
                 Button btn = gb.Controls["btnRem" + _numFilters] as Button;
                 int curentgroup = _numFilters;
-                btn.Click += (send, evt) => { this.Controls.RemoveByKey("grp" + curentgroup); };
+                btn.Click += (send, evt) => { this.Controls.RemoveByKey("grp" + curentgroup); _numFilters -= 1; int n = _numFilters;  if ( n > 1) { _lastGroupPos -= 80; } else { _lastGroupPos -= 50; } };
             }
             catch(Exception ex)
             {
