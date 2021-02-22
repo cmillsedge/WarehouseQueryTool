@@ -29,11 +29,14 @@ namespace WarehouseQueryTool
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFilter));
             this.btnClose = new System.Windows.Forms.Button();
             this.lblAddFilter = new System.Windows.Forms.Label();
             this.cmbColumns = new System.Windows.Forms.ComboBox();
             this.btnAddFilter = new System.Windows.Forms.Button();
+            this.btnApply = new System.Windows.Forms.Button();
+            this.ttip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btnClose
@@ -73,11 +76,22 @@ namespace WarehouseQueryTool
             this.btnAddFilter.UseVisualStyleBackColor = true;
             this.btnAddFilter.Click += new System.EventHandler(this.btnAddFilter_Click);
             // 
+            // btnApply
+            // 
+            this.btnApply.Location = new System.Drawing.Point(803, 608);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(81, 29);
+            this.btnApply.TabIndex = 5;
+            this.btnApply.Text = "Apply Filter";
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
             // frmFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(917, 649);
+            this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnAddFilter);
             this.Controls.Add(this.cmbColumns);
             this.Controls.Add(this.lblAddFilter);
@@ -97,5 +111,7 @@ namespace WarehouseQueryTool
         private System.Windows.Forms.Label lblAddFilter;
         private System.Windows.Forms.ComboBox cmbColumns;
         private System.Windows.Forms.Button btnAddFilter;
+        private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.ToolTip ttip;
     }
 }

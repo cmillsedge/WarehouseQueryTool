@@ -50,7 +50,7 @@ namespace WarehouseQueryTool
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.Dispose();
+            //this.Dispose();
         }
 
         private void LogOn_Load(object sender, EventArgs e)

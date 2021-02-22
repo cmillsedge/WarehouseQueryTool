@@ -38,7 +38,7 @@ namespace WarehouseQueryTool
 
             try
             {
-                int p = Params.Count();
+                int p = Params.Count;
                 List<ParameterSQL> pSQLS = new List<ParameterSQL>();
                 for (int i = 0; i < p; i++)
                 {
@@ -60,7 +60,7 @@ namespace WarehouseQueryTool
 
             try
             {
-                int p = Params.Count();
+                int p = Params.Count;
                 if (Level == 0 || Levels == 1)
                 {
                     p += 4;

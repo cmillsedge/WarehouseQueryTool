@@ -26,13 +26,16 @@ namespace WarehouseQueryTool
         //Deserialization constructor.
         public DBProperties(SerializationInfo info, StreamingContext ctxt)
         {
-            //Get the values from info and assign them to the appropriate properties
-            Schema = (String)info.GetValue("Schema", typeof(string));
-            //null password as this is just to load the form fields up again without the password
-            Password = String.Empty;
-            Host = (String)info.GetValue("Host", typeof(string));
-            Port = (String)info.GetValue("Port", typeof(string));
-            SID = (String)info.GetValue("SID", typeof(string));
+            if (info != null)
+            {
+                //Get the values from info and assign them to the appropriate properties
+                Schema = (String)info.GetValue("Schema", typeof(string));
+                //null password as this is just to load the form fields up again without the password
+                Password = String.Empty;
+                Host = (String)info.GetValue("Host", typeof(string));
+                Port = (String)info.GetValue("Port", typeof(string));
+                SID = (String)info.GetValue("SID", typeof(string));
+            }
         }
 
         //Serialization function.

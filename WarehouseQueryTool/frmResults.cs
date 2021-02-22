@@ -63,7 +63,7 @@ namespace WarehouseQueryTool
                 for (int i = 0; i < _mainTable.Columns.Count; i++)
                 {
                     TypedColumn tc = new TypedColumn();
-                    tc.FieldName = _mainTable.Columns[i].ColumnName;
+                    tc.FieldName = _mainTable.Columns[i].ColumnName.Replace(Environment.NewLine, " ");
                     tc.DataType = _mainTable.Columns[i].DataType.ToString();
                     _columns.Add(tc);
                 }
@@ -143,36 +143,19 @@ namespace WarehouseQueryTool
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            //string rowFilter = "";
-            //if (txtExpt.Text != "")
-            //{
-            //    rowFilter += string.Format("[{0}] LIKE '%{1}%'", "Expt_Name", txtExpt.Text);
-            //}
-            //if (txtProcess.Text != "")
-            //{
-            //    if (rowFilter.Length == 0)
-            //    {
-            //        rowFilter += string.Format("[{0}] LIKE '%{1}%'", "Process_Ver_Name", txtProcess.Text);
-            //    }
-            //    else
-            //    {
-            //        rowFilter += string.Format("AND [{0}] LIKE '%{1}%'", "Process_Ver_Name", txtProcess.Text);
-            //    }
-            //}
-            //if (txtMethod.Text != "")
-            //{
-            //    if (rowFilter.Length == 0)
-            //    {
-            //        rowFilter += string.Format("[{0}] LIKE '%{1}%'", "Method_Name", txtMethod.Text);
-            //    }
-            //    else
-            //    {
-            //        rowFilter += string.Format("AND [{0}] LIKE '%{1}%'", "Method_Name", txtMethod.Text);
-            //    }
-            //}
-
-            ////rowFilter += string.Format(" OR [{0}] = '{1}'", columnName, additionalFilterValue);
-            //(dgvResults.DataSource as DataTable).DefaultView.RowFilter = rowFilter;
+            string filter = String.Empty;
+            for (int i = 0; i < _filterControlSets.Count; i++)
+            {
+                if (i == 0)
+                {
+                    filter += _filterControlSets[i].ControlSetToString();
+                }
+                else
+                {
+                    filter += " AND " + _filterControlSets[i].ControlSetToString();
+                }
+            }
+            (dgvResults.DataSource as DataTable).DefaultView.RowFilter = filter;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -184,11 +167,11 @@ namespace WarehouseQueryTool
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.Dispose();
+            //this.Dispose();
         }
 
         
-        private void copyAlltoClipboard()
+        private void CopyAlltoClipboard()
         {
              dgvResults.SelectAll();
             DataObject dataObj = dgvResults.GetClipboardContent();
@@ -196,7 +179,7 @@ namespace WarehouseQueryTool
                 Clipboard.SetDataObject(dataObj);
         }
 
-        private void releaseObject(object obj)
+        private void ReleaseObject(object obj)
         {
             try
             {
@@ -223,7 +206,7 @@ namespace WarehouseQueryTool
             {
                 dgvResults.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
                 // Copy DataGridView results to clipboard
-                copyAlltoClipboard();
+                CopyAlltoClipboard();
 
                 object misValue = System.Reflection.Missing.Value;
                 Excel.Application xlexcel = new Excel.Application();
@@ -249,9 +232,9 @@ namespace WarehouseQueryTool
                 xlWorkBook.Close(true, misValue, misValue);
                 xlexcel.Quit();
 
-                releaseObject(xlWorkSheet);
-                releaseObject(xlWorkBook);
-                releaseObject(xlexcel);
+                ReleaseObject(xlWorkSheet);
+                ReleaseObject(xlWorkBook);
+                ReleaseObject(xlexcel);
 
                 // Clear Clipboard and DataGridView selection
                 Clipboard.Clear();
@@ -269,6 +252,7 @@ namespace WarehouseQueryTool
             {
                 frmFilter.Location = this.Location;
                 frmFilter.ShowDialog();
+                _filterControlSets = frmFilter.filters;
             }
         }
     }

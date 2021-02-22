@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
+using System.Globalization;
 using System.IO;
 using System.Resources;
 using System.Drawing;
@@ -12,8 +13,8 @@ namespace WarehouseQueryTool
 {
     public partial class frmQueryBuilder : Form
     {
-        private OrclCommand _whconn;
-        private Outline[] outlines;
+        private readonly OrclCommand _whconn;
+        private readonly Outline[] outlines;
         public frmQueryBuilder(OrclCommand WHConn)
         {
             _whconn = WHConn;
@@ -41,7 +42,7 @@ namespace WarehouseQueryTool
             try
             {
                 string query = "SELECT a.src_system_id as outline_id, a.name AS outline_name ";
-                query = query + " FROM  d_outlines a";
+                query += " FROM  d_outlines a";
 
                 DataTable dt = _whconn.RunQuery(query);
                 outlines = new Outline[dt.Rows.Count];
@@ -53,9 +54,9 @@ namespace WarehouseQueryTool
                 {
                     foreach (DataColumn dc in dt.Columns)
                     {
-                        if (dc.ColumnName == "OUTLINE_ID") { outlines[n].Id = Int32.Parse(dr[dc].ToString()); }
+                        if (dc.ColumnName == "OUTLINE_ID") { outlines[n].Id = int.Parse(dr[dc].ToString(), new CultureInfo("en-US")); }
                         if (dc.ColumnName == "OUTLINE_NAME") { outlines[n].Name = dr[dc].ToString(); }
-                        if (outlines[n].Id > 0 & outlines[n].Name != "") { outlines[n].GetProcessDefinitions(); }
+                        if (outlines[n].Id > 0 & outlines[n].Name.Length > 0) { outlines[n].GetProcessDefinitions(); }
                     }
                     n += 1;
                 }

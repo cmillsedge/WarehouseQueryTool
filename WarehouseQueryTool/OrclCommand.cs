@@ -56,8 +56,7 @@ namespace WarehouseQueryTool
                 throw ;
             }
             finally
-            {   // Clean up
-                reader.Dispose();
+            {   
                 cmd.Dispose();
                 dataTable.Dispose();
             }

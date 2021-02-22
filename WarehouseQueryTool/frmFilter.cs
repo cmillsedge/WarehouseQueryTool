@@ -12,15 +12,16 @@ namespace WarehouseQueryTool
 {
     public partial class frmFilter : Form
     {
-        private List<Label> _labels;
+        //private List<Label> _labels;
         private int _lastGroupPos = 50;
         private int _numFilters = 0;
+        public List<FilterControlSet> filters;
 
         public frmFilter(List<FilterControlSet> filterControlSets, BindingList<TypedColumn> columns)
         {
             InitializeComponent();
             PopulateColumnCombo(columns);
-            _labels = new List<Label>();
+            //_labels = new List<Label>();
             if (filterControlSets.Count > 0)
             { ReloadFilters(filterControlSets); }
         }
@@ -61,7 +62,7 @@ namespace WarehouseQueryTool
                 gb.Name = "grp" + _numFilters;
                 TypedColumn tc = (cmbColumns.SelectedItem as TypedColumn);
                 this.Controls.Add(gb);
-                FilterFormBuilder.AddFilterElements(gb, _numFilters, tc);
+                FilterFormConverter.AddFilterElements(gb, _numFilters, tc, ttip);
                 Button btn = gb.Controls["btnRem" + _numFilters] as Button;
                 int curentgroup = _numFilters;
                 btn.Click += (send, evt) => { this.Controls.RemoveByKey("grp" + curentgroup); _numFilters -= 1; int n = _numFilters;  if ( n > 1) { _lastGroupPos -= 80; } else { _lastGroupPos -= 50; } };
@@ -76,8 +77,20 @@ namespace WarehouseQueryTool
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.Dispose();
+            //this.Dispose();
         }
 
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            List<GroupBox> grpboxes = new List<GroupBox>();
+            foreach(GroupBox grp in this.Controls.OfType<GroupBox>())
+            {
+                grpboxes.Add(grp); 
+            }
+            filters = FilterFormConverter.BoxesToFilterControlSets(grpboxes);
+            
+            this.Close();
+
+        }
     }
 }
