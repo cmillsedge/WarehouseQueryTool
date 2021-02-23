@@ -40,7 +40,9 @@ namespace WarehouseQueryTool
                     string process = dt.Rows[0]["Process_Ver_Name"].ToString();
                     AddColumns(dt, process);
                     AddRows(dt, process);
+                    dt.Dispose();
                 }
+                
                 dgvResults.DataSource = _mainTable;
                 dgvResults.Columns[0].Frozen = true;
                 dgvResults.Columns[1].Frozen = true;
@@ -63,7 +65,7 @@ namespace WarehouseQueryTool
                 for (int i = 0; i < _mainTable.Columns.Count; i++)
                 {
                     TypedColumn tc = new TypedColumn();
-                    tc.FieldName = _mainTable.Columns[i].ColumnName.Replace(Environment.NewLine, " ");
+                    tc.FieldName = _mainTable.Columns[i].ColumnName.Replace(Environment.NewLine, " | ");
                     tc.DataType = _mainTable.Columns[i].DataType.ToString();
                     _columns.Add(tc);
                 }
@@ -97,9 +99,10 @@ namespace WarehouseQueryTool
 
             try
             {
-                DataColumn df = new DataColumn("Filter Operations", System.Type.GetType("System.String"));
+                //DataColumn df = new DataColumn("Filter Operations", System.Type.GetType("System.String"));
                 foreach (DataColumn dc in dt.Columns)
                 {
+                    dc.ColumnName = dc.ColumnName.TrimStart(' ').TrimEnd(' ');
                     if(!(dc.ColumnName == "Expt_Name" || dc.ColumnName == "Process_Ver_Name" || dc.ColumnName == "Method_Name" || dc.ColumnName == "Lot_Name"))
                     { 
                         dc.ColumnName = process + Environment.NewLine + dc.ColumnName;
@@ -141,7 +144,23 @@ namespace WarehouseQueryTool
             }
         }
 
+        private void btnDefinition_Click(object sender, EventArgs e)
+        {
+            using (frmFilter frmFilter = new frmFilter(_filterControlSets, _columns))
+            {
+                frmFilter.Location = this.Location;
+                frmFilter.ShowDialog();
+                _filterControlSets = frmFilter.filters;
+            }
+            ApplyFilter();
+        }
+
         private void btnFilter_Click(object sender, EventArgs e)
+        {
+            ApplyFilter();
+        }
+
+        private void ApplyFilter()
         {
             string filter = String.Empty;
             for (int i = 0; i < _filterControlSets.Count; i++)
@@ -155,8 +174,11 @@ namespace WarehouseQueryTool
                     filter += " AND " + _filterControlSets[i].ControlSetToString();
                 }
             }
+            (dgvResults.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
             (dgvResults.DataSource as DataTable).DefaultView.RowFilter = filter;
         }
+
+        
 
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -246,14 +268,6 @@ namespace WarehouseQueryTool
             }
         }
 
-        private void btnDefinition_Click(object sender, EventArgs e)
-        {
-            using (frmFilter frmFilter = new frmFilter(_filterControlSets, _columns))
-            {
-                frmFilter.Location = this.Location;
-                frmFilter.ShowDialog();
-                _filterControlSets = frmFilter.filters;
-            }
-        }
+        
     }
 }

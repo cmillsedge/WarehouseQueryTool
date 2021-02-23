@@ -10,70 +10,31 @@
        <Types>
         <Type Name="DBProperties" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2021-02-22 15:30:04Z" FixCategory="NonBreaking">
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2021-02-23 11:07:01Z" FixCategory="NonBreaking">
            <Issue Name="MakeOverridable" Certainty="60" Level="Error">Make 'DBProperties'.GetObjectData virtual and overridable.</Issue>
           </Message>
-          <Message TypeName="ImplementSerializationConstructors" Category="Microsoft.Usage" CheckId="CA2229" Status="Active" Created="2021-02-22 15:30:04Z" FixCategory="NonBreaking">
+          <Message TypeName="ImplementSerializationConstructors" Category="Microsoft.Usage" CheckId="CA2229" Status="Active" Created="2021-02-23 11:07:01Z" FixCategory="NonBreaking">
            <Issue Name="MakeUnsealedMagicConstructorFamily" Certainty="95" Level="Error">Declare the serialization constructor of 'DBProperties', an unsealed type, as protected.</Issue>
           </Message>
          </Messages>
         </Type>
-        <Type Name="FilterFormConverter" Kind="Class" Accessibility="Public" ExternallyVisible="True">
-         <Members>
-          <Member Name="#BoxesToFilterControlSets(System.Collections.Generic.List`1&lt;System.Windows.Forms.GroupBox&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2021-02-22 15:30:04Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="Error" Path="C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\WarehouseQueryTool" File="FilterFormConverter.cs" Line="125">'FilterFormConverter.BoxesToFilterControlSets(List&lt;GroupBox&gt;)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-          <Member Name="#GetBoxNumber(System.Windows.Forms.GroupBox)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2021-02-22 15:30:04Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="Error" Path="C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\WarehouseQueryTool" File="FilterFormConverter.cs" Line="142">'FilterFormConverter.GetBoxNumber(GroupBox)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-          <Member Name="#GetFilterCombo(System.Int32,System.Windows.Forms.GroupBox)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2021-02-22 15:30:04Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="Error" Path="C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\WarehouseQueryTool" File="FilterFormConverter.cs" Line="157">'FilterFormConverter.GetFilterCombo(int, GroupBox)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-          <Member Name="#GetFilterLabel(System.Int32,System.Windows.Forms.GroupBox)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2021-02-22 15:30:04Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="Error" Path="C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\WarehouseQueryTool" File="FilterFormConverter.cs" Line="172">'FilterFormConverter.GetFilterLabel(int, GroupBox)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-          <Member Name="#GetFilterTextBox(System.Int32,System.Windows.Forms.GroupBox)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2021-02-22 15:30:04Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="Error" Path="C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\WarehouseQueryTool" File="FilterFormConverter.cs" Line="187">'FilterFormConverter.GetFilterTextBox(int, GroupBox)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-         </Members>
-        </Type>
         <Type Name="OrclCommand" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2021-02-22 15:30:04Z" FixCategory="DependsOnFix">
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2021-02-23 11:07:01Z" FixCategory="DependsOnFix">
            <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implement IDisposable on 'OrclCommand' because it creates members of the following IDisposable types: 'OracleConnection'. If 'OrclCommand' has previously shipped, adding new members that implement IDisposable to this type is considered a breaking change to existing consumers.</Issue>
           </Message>
          </Messages>
          <Members>
           <Member Name="#ExecuteOneParamProc(System.String,System.String,System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2021-02-22 15:30:04Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2021-02-23 11:07:01Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\WarehouseQueryTool" File="OrclCommand.cs" Line="76">The query string passed to 'OracleCommand.OracleCommand(string, OracleConnection)' in 'OrclCommand.ExecuteOneParamProc(string, string, string, string)' could contain the following variables 'procedure'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#RunQuery(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2021-02-22 15:30:04Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2021-02-23 11:07:01Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\WarehouseQueryTool" File="OrclCommand.cs" Line="39">The query string passed to 'OracleCommand.OracleCommand(string)' in 'OrclCommand.RunQuery(string)' could contain the following variables 'sql'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
             </Message>
            </Messages>
@@ -104,16 +65,6 @@
    <Resolution Name="MakeUnsealedMagicConstructorFamily">Declare the serialization constructor of {0}, an unsealed type, as protected.</Resolution>
    <Owner />
    <Url>http://msdn.microsoft.com/library/ms182343.aspx</Url>
-   <Email>[none]</Email>
-   <MessageLevel Certainty="95">Error</MessageLevel>
-   <File Name="usagerules.dll" Version="16.0.0.0" />
-  </Rule>
-  <Rule TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200">
-   <Name>Rethrow to preserve stack details</Name>
-   <Description>Use the IL rethrow instruction to preserve original stack details when re-raising a caught exception.</Description>
-   <Resolution Name="Default">{0} rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Resolution>
-   <Owner />
-   <Url>http://msdn.microsoft.com/library/ms182363.aspx</Url>
    <Email>[none]</Email>
    <MessageLevel Certainty="95">Error</MessageLevel>
    <File Name="usagerules.dll" Version="16.0.0.0" />

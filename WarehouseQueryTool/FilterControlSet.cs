@@ -10,10 +10,12 @@ namespace WarehouseQueryTool
     {
         public string FieldName { get; set; }
         public string OperatorControl { get; set; }
+        public string ColLabelControl { get; set; }
         public string OperatorValue { get; set; }
         public string FieldControl { get; set; }
         public string FieldValue { get; set; }
         public string DataType { get; set; }
+        public string DataTypeLabelControl { get; set; }
 
         public FilterControlSet()
         {

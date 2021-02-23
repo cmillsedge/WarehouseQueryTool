@@ -46,7 +46,7 @@ namespace WarehouseQueryTool
             lblValue.Location = new Point(605, 21);
             box.Controls.Add(lblValue);
             //Combo for filter operator
-            BindingList<string> operators = GetOperators(tc);
+            BindingList<string> operators = GetOperators(tc.DataType);
             ComboBox cmbOper = new ComboBox();
             cmbOper.DataSource = operators;
             cmbOper.Name = "cmbOper" + numfilters;
@@ -69,11 +69,67 @@ namespace WarehouseQueryTool
             box.Controls.Add(btnRem);
         }
 
-        public static BindingList<string> GetOperators(TypedColumn tc)
+        public static void ReloadFilterElements(GroupBox box,  int numfilters,  FilterControlSet fcs, ToolTip ttip)
+        {
+
+            //label for datatype
+            Label lblType = new Label();
+            lblType.Text = fcs.DataType;
+            lblType.Name = fcs.DataTypeLabelControl;
+            lblType.Size = new Size(1, 1);
+            lblType.Location = new Point(1, 1);
+            box.Controls.Add(lblType);
+            //label for column
+            Label lblColumn = new Label();
+            lblColumn.Text = fcs.FieldName;
+            lblColumn.Name = fcs.ColLabelControl;
+            lblColumn.Size = new Size(300, 13);
+            ttip.SetToolTip(lblColumn, fcs.FieldName);
+            lblColumn.Location = new Point(16, 42);
+            box.Controls.Add(lblColumn);
+            //label for operator
+            Label lblOper = new Label();
+            lblOper.Text = "Operator";
+            lblOper.Name = "lblOper" + numfilters;
+            lblOper.Size = new Size(48, 13);
+            lblOper.Location = new Point(399, 21);
+            box.Controls.Add(lblOper);
+            //label for filter value
+            Label lblValue = new Label();
+            lblValue.Text = "Filter Value";
+            lblValue.Name = "lblValue" + numfilters;
+            lblValue.Size = new Size(59, 13);
+            lblValue.Location = new Point(605, 21);
+            box.Controls.Add(lblValue);
+            //Combo for filter operator
+            BindingList<string> operators = GetOperators(fcs.DataType);
+            ComboBox cmbOper = new ComboBox();
+            cmbOper.DataSource = operators;
+            cmbOper.Name = fcs.OperatorControl;
+            cmbOper.Size = new Size(150, 20);
+            cmbOper.Location = new Point(344, 37);
+            box.Controls.Add(cmbOper);
+            //textbox for filter value
+            TextBox txtValue = new TextBox();
+            txtValue.Text = fcs.FieldValue;
+            txtValue.Name = fcs.FieldControl;
+            txtValue.Size = new Size(270, 20);
+            txtValue.Location = new Point(499, 37);
+            box.Controls.Add(txtValue);
+            //button for removal
+            Button btnRem = new Button();
+            btnRem.Text = "Remove Filter";
+            btnRem.Name = "btnRem" + numfilters;
+            btnRem.Size = new Size(100, 20);
+            btnRem.Location = new Point(780, 37);
+            box.Controls.Add(btnRem);
+        }
+
+        public static BindingList<string> GetOperators(string datatype)
         {
             BindingList<string> operators = new BindingList<string>();
 
-            switch (tc.DataType)
+            switch (datatype)
             {
                 case "System.String":
                     operators.Add("EQUALS");
@@ -113,9 +169,12 @@ namespace WarehouseQueryTool
                     ComboBox filterOpCombo = GetFilterCombo( boxNumber, gb);
                     Label filterLabel = GetFilterLabel( boxNumber, gb);
                     Label typeLabel = GetDataTypeLabel(boxNumber, gb);
+                    Label colLabel = GetColumnLabel(boxNumber, gb);
                     FilterControlSet fcs = new FilterControlSet();
+                    fcs.ColLabelControl = colLabel.Name;
+                    fcs.DataTypeLabelControl = typeLabel.Name;
                     fcs.FieldControl = filterValText.Name;
-                    fcs.FieldName = filterLabel.Text;
+                    fcs.FieldName = filterLabel.Text.Replace(" | ", Environment.NewLine);
                     fcs.FieldValue = filterValText.Text;
                     fcs.OperatorControl = filterOpCombo.Name;
                     fcs.OperatorValue = filterOpCombo.SelectedItem.ToString();
@@ -124,9 +183,9 @@ namespace WarehouseQueryTool
 
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
             return filterControlSets;
         }
@@ -141,9 +200,9 @@ namespace WarehouseQueryTool
                 boxNumber = int.Parse(boxName, new CultureInfo("en-US"));
 
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw ;
             }
             return boxNumber;
         }
@@ -156,9 +215,9 @@ namespace WarehouseQueryTool
                 Control[] ctls = groupBox.Controls.Find("cmbOper" + controlNum, true);
                 cmb = (ComboBox)ctls[0];
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw ;
             }
             return cmb;
         }
@@ -171,9 +230,9 @@ namespace WarehouseQueryTool
                 Control[] ctls = groupBox.Controls.Find("lblCoumn" + controlNum, true);
                 lbl = (Label)ctls[0];
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
             return lbl;
         }
@@ -186,9 +245,24 @@ namespace WarehouseQueryTool
                 Control[] ctls = groupBox.Controls.Find("lblType" + controlNum, true);
                 lbl = (Label)ctls[0];
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
+            }
+            return lbl;
+        }
+
+        public static Label GetColumnLabel(int controlNum, GroupBox groupBox)
+        {
+            Label lbl = null;
+            try
+            {
+                Control[] ctls = groupBox.Controls.Find("lblCoumn" + controlNum, true);
+                lbl = (Label)ctls[0];
+            }
+            catch
+            {
+                throw;
             }
             return lbl;
         }
@@ -201,9 +275,9 @@ namespace WarehouseQueryTool
                 Control[] ctls = groupBox.Controls.Find("txtValue" + controlNum, true);
                 txt = (TextBox)ctls[0];
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
             return txt;
         }
