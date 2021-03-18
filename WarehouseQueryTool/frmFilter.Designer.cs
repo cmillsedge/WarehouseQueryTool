@@ -99,6 +99,7 @@ namespace WarehouseQueryTool
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmFilter";
             this.RightToLeftLayout = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Result Filter Definition";
             this.ResumeLayout(false);
             this.PerformLayout();

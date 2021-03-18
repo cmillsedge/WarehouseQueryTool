@@ -106,6 +106,7 @@ namespace WarehouseQueryTool
             ComboBox cmbOper = new ComboBox();
             cmbOper.DataSource = operators;
             cmbOper.Name = fcs.OperatorControl;
+            cmbOper.Text = fcs.OperatorValue;
             cmbOper.Size = new Size(150, 20);
             cmbOper.Location = new Point(344, 37);
             box.Controls.Add(cmbOper);

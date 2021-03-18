@@ -38,8 +38,6 @@ C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQuer
 C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.csproj.CopyComplete
 C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.exe
 C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.pdb
-C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.csproj.ResolveComReference.cache
-C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.csprojAssemblyReference.cache
 C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\WarehouseQueryTool\bin\Debug\WarehouseQueryTool.exe.config
 C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\WarehouseQueryTool\bin\Debug\WarehouseQueryTool.exe
 C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\WarehouseQueryTool\bin\Debug\WarehouseQueryTool.pdb
@@ -58,3 +56,7 @@ C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\
 C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\WarehouseQueryTool\bin\Debug\WarehouseQueryTool.exe.CodeAnalysisLog.xml
 C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\WarehouseQueryTool\bin\Debug\WarehouseQueryTool.exe.lastcodeanalysissucceeded
 C:\Users\millsy\source\repos\CSharp\WHQueryTool Filter Table\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.csprojAssemblyReference.cache
+C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\bin\Debug\WarehouseQueryTool.exe.CodeAnalysisLog.xml
+C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\bin\Debug\WarehouseQueryTool.exe.lastcodeanalysissucceeded
+C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.frmFilter.resources
+C:\Users\millsy\source\repos\CSharp\WHQueryTool\WarehouseQueryTool\WarehouseQueryTool\obj\Debug\WarehouseQueryTool.csprojAssemblyReference.cache

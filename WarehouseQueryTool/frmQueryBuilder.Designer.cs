@@ -138,6 +138,7 @@
             this.Controls.Add(this.trvPick);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmQueryBuilder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Warehouse Query Builder";
             this.ResumeLayout(false);
             this.PerformLayout();

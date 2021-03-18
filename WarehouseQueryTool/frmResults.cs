@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using Excel = Microsoft.Office.Interop.Excel;
 
 namespace WarehouseQueryTool
 {
@@ -163,19 +162,22 @@ namespace WarehouseQueryTool
         private void ApplyFilter()
         {
             string filter = String.Empty;
-            for (int i = 0; i < _filterControlSets.Count; i++)
+            if (_filterControlSets != null)
             {
-                if (i == 0)
+                for (int i = 0; i < _filterControlSets.Count; i++)
                 {
-                    filter += _filterControlSets[i].ControlSetToString();
+                    if (i == 0)
+                    {
+                        filter += _filterControlSets[i].ControlSetToString();
+                    }
+                    else
+                    {
+                        filter += " AND " + _filterControlSets[i].ControlSetToString();
+                    }
                 }
-                else
-                {
-                    filter += " AND " + _filterControlSets[i].ControlSetToString();
-                }
+                (dgvResults.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+                (dgvResults.DataSource as DataTable).DefaultView.RowFilter = filter;
             }
-            (dgvResults.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
-            (dgvResults.DataSource as DataTable).DefaultView.RowFilter = filter;
         }
 
         
@@ -195,7 +197,7 @@ namespace WarehouseQueryTool
         
         private void CopyAlltoClipboard()
         {
-             dgvResults.SelectAll();
+            dgvResults.SelectAll();
             DataObject dataObj = dgvResults.GetClipboardContent();
             if (dataObj != null)
                 Clipboard.SetDataObject(dataObj);
@@ -222,41 +224,15 @@ namespace WarehouseQueryTool
         private void btnExport_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Excel Documents (*.xls)|*.xls";
-            sfd.FileName = "WarehouseQuery-" + System.DateTime.Now.ToString().Replace('/', '-').Replace(':', '-') + ".xls";
+            sfd.Filter = "Tab Text File (*.tsv)|*.tsv";
+            sfd.FileName = "WarehouseQuery-" + System.DateTime.Now.ToString().Replace('/', '-').Replace(':', '-') + ".tsv";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 dgvResults.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
                 // Copy DataGridView results to clipboard
                 CopyAlltoClipboard();
 
-                object misValue = System.Reflection.Missing.Value;
-                Excel.Application xlexcel = new Excel.Application();
-
-                xlexcel.DisplayAlerts = false; // Without this you will get two confirm overwrite prompts
-                Excel.Workbook xlWorkBook = xlexcel.Workbooks.Add(misValue);
-                Excel.Worksheet xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-
-                // Paste clipboard results to worksheet range
-                Excel.Range CR = (Excel.Range)xlWorkSheet.Cells[1, 1];
-                CR.Select();
-                xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
-
-                //For some reason column A is always blank in the worksheet. ¯\_(ツ)_ /¯
-                // Delete blank column A and select cell A1
-                Excel.Range delRng = xlWorkSheet.get_Range("A:A").Cells;
-                delRng.Delete(Type.Missing);
-                xlWorkSheet.get_Range("A1").Select();
-
-                // Save the excel file under the captured location from the SaveFileDialog
-                xlWorkBook.SaveAs(sfd.FileName, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-                xlexcel.DisplayAlerts = true;
-                xlWorkBook.Close(true, misValue, misValue);
-                xlexcel.Quit();
-
-                ReleaseObject(xlWorkSheet);
-                ReleaseObject(xlWorkBook);
-                ReleaseObject(xlexcel);
+                File.WriteAllText(sfd.FileName, Clipboard.GetText());
 
                 // Clear Clipboard and DataGridView selection
                 Clipboard.Clear();
